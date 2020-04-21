@@ -1,0 +1,30 @@
+[package]
+name = "dictr"
+version = "0.1.0"
+authors = ["Jan Schreiber <jan@mecinus.com>"]
+license = "BSD-2-Clause"
+edition = "2018"
+description = "A dict/dictd implementation of RFC2229"
+readme = "README.md"
+keywords = ["cli", "gopher", "client"]
+categories = ["command-line-utilities", "network-programming"]
+
+[[bin]]
+name = "dictrd"
+path = "src/dictrd/bin/main.rs"
+
+[[bin]]
+name = "dictr"
+path = "src/dictr/bin/main.rs"
+
+[lib]
+name = "dictrdlib"
+path = "src/dictrd/lib/lib.rs"
+
+[dependencies]
+bufstream = "0.1.4"
+log = "^0.4.0"
+simple-logging = "^2.0.2"
+hostname = "^0.3"
+os_info = "^2.0.2"
+rand = "^0.7.3"
