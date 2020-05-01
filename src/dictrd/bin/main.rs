@@ -617,7 +617,7 @@ fn add_database(filename: String) -> (IndexReader, DictReader<File>, String, Str
 fn main() {
     simple_logging::log_to_stderr(LevelFilter::Info);
 
-    let port = 8888;
+    let port = 2628;
     let addr: SocketAddr = SocketAddr::from_str(format!("127.0.0.1:{}", port).as_str()).unwrap();
     let listener = TcpListener::bind(addr).unwrap_or_else(|e| {
         error!("Could not bind to port {}: {:?}", port, e);

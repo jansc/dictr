@@ -10,9 +10,9 @@ To run th server:
 
     cargo run --bin dictrd
 
-Default port for testing is 8888 (will become 2628).
+Default port for testing is 2628 (will become 2628).
 
-    telnet localhost 8888
+    telnet localhost 2628
 
 Run tests:
 
