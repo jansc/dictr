@@ -6,11 +6,7 @@ fn main() {
 -s --strategy <strategy>  strategy for matching or defining
 -c --config <file>        specify configuration file
 -C --nocorrect            disable attempted spelling correction
--D --dbs                  show available databases
--S --strats               show available search strategies
--H --serverhelp           show server help
 -i --info <dbname>        show information about a database
--I --serverinfo           show information about the server
 -a --noauth               disable authentication
 -u --user <username>      username for authentication
 -k --key <key>            shared secret for authentication
@@ -39,6 +35,22 @@ fn main() {
              .long("match")
              .short("m")
              .help("match instead of define"))
+        .arg(Arg::with_name("serverinfo")
+             .long("serverinfo")
+             .short("I")
+             .help("show information about the server"))
+        .arg(Arg::with_name("serverhelp")
+             .long("serverhelp")
+             .short("H")
+             .help("show server help"))
+        .arg(Arg::with_name("dbs")
+             .long("dbs")
+             .short("D")
+             .help("show available databases"))
+        .arg(Arg::with_name("strats")
+             .long("strats")
+             .short("S")
+             .help("show available search strategies"))
         .get_matches();
     println!("Not implemented!");
 }
