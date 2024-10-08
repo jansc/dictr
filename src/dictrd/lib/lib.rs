@@ -31,9 +31,9 @@ impl IndexReader {
         let mut index = 0u64;
         for (i, ch) in word.chars().rev().enumerate() {
             let base64 = match ch {
-                '0'..='9' => ((ch as u64) + 4),
-                'A'..='Z' => ((ch as u64) - 65),
-                'a'..='z' => ((ch as u64) - 71),
+                '0'..='9' => (ch as u64) + 4,
+                'A'..='Z' => (ch as u64) - 65,
+                'a'..='z' => (ch as u64) - 71,
                 '+' => 62,
                 '/' => 63,
                 _ => return Err(DictError::InvalidBase64),

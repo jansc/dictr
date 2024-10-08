@@ -166,34 +166,22 @@ impl<R: Read + Seek> DictdServer<R> {
                 };
                 match cmd.cmd {
                     Cmd::Define => {
-                        if let Err(e) = self.command_define(&mut *stream, cmd) {
-                            return Err(e);
-                        }
+                        self.command_define(&mut *stream, cmd)?
                     }
                     Cmd::Help => {
-                        if let Err(e) = self.command_help(&mut *stream) {
-                            return Err(e);
-                        }
+                        self.command_help(&mut *stream)?
                     }
                     Cmd::Match => {
-                        if let Err(e) = self.command_match(&mut *stream, cmd) {
-                            return Err(e);
-                        }
+                        self.command_match(&mut *stream, cmd)?
                     }
                     Cmd::Show => {
-                        if let Err(e) = self.command_show(&mut *stream, cmd) {
-                            return Err(e);
-                        }
+                        self.command_show(&mut *stream, cmd)?
                     }
                     Cmd::Status => {
-                        if let Err(e) = self.command_status(&mut *stream, cmd) {
-                            return Err(e);
-                        }
+                        self.command_status(&mut *stream, cmd)?
                     }
                     Cmd::Quit => {
-                        if let Err(e) = self.command_quit(&mut *stream, cmd) {
-                            return Err(e);
-                        }
+                        self.command_quit(&mut *stream, cmd)?;
                         break;
                     }
                     Cmd::Option => {
@@ -203,9 +191,7 @@ impl<R: Read + Seek> DictdServer<R> {
                     }
                     Cmd::Unknown => {
                         if cmd.params.len() == 1 && cmd.params[0] == "XRANDOM" {
-                            if let Err(e) = self.command_random(&mut *stream, cmd) {
-                                return Err(e);
-                            }
+                            self.command_random(&mut *stream, cmd)?
                         } else if let Err(e) = stream.write_all(b"502 OPTION not implemented\n") {
                             return Err(DictdError::IoError(e));
                         }
@@ -352,7 +338,7 @@ impl<R: Read + Seek> DictdServer<R> {
             return Ok(());
         }
         let strategy = &cmd.params[2];
-        if !self.strategy_exists(&strategy) {
+        if !self.strategy_exists(strategy) {
             stream.write_all(
                 b"551 Invalid stragegy, use \"SHOW STRATS\" for a list of strategies\n",
             )?;

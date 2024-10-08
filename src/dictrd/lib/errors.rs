@@ -22,8 +22,8 @@ impl std::error::Error for DictError {
             DictError::IoError(ref e) => Some(e),
             DictError::EncodingError(ref e) => Some(e),
             DictError::InvalidBase64 => None,
-            DictError::SyntaxError(ref _e) => None,
-            DictError::NoMatch(ref _e) => None,
+            DictError::SyntaxError(_e) => None,
+            DictError::NoMatch(_e) => None,
         }
     }
 }
